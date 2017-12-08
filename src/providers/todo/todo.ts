@@ -16,6 +16,10 @@ export class TodoProvider {
     console.log('Hello TodoProvider Provider');
   }
 
+  editTodo(todoText, todoIndex) {
+    this.todos[todoIndex] = todoText;
+  }
+
   archiveTodo(todoIndex) {
     let todoToBeArchived = this.todos[todoIndex];
     this.todos.splice(todoIndex, 1);

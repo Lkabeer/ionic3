@@ -33,6 +33,41 @@ export class HomePage {
     reorderArray(this.todos, $event);
   }
 
+  editTodo(todoIndex) {
+    let editTodoAlert = this.alertCtrl.create({
+      title: "Edit a Todo",
+      message: "Edit your Todo",
+      inputs: [
+        {
+          type: "text",
+          name: "editTodoInput"
+        }
+      ],
+      buttons: [
+        {
+          text: "Cancel"
+        },
+        {
+          text: "Edit Todo",
+          handler: (inputData) => {
+            let todoText;
+            todoText = inputData.editTodoInput;
+            this.todoProvider.editTodo(todoText, todoIndex);
+
+            editTodoAlert.onDidDismiss(() => {
+              let editTodoToast = this.toastController.create({
+                message: "Todo Edited",
+                duration: 2000
+              });
+              editTodoToast.present();
+            });
+          }
+        }
+      ]
+    });
+    editTodoAlert.present();
+  }
+
   openTodoAlert() {
     let addTodoAlert = this.alertCtrl.create({
       title: "Add a Todo",
@@ -67,5 +102,5 @@ export class HomePage {
     });
     addTodoAlert.present();
   }
-
+  
 }
