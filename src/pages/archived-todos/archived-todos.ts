@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { TodoProvider } from "../../providers/todo/todo";
+
 /**
  * Generated class for the ArchivedTodosPage page.
  *
@@ -14,12 +16,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'archived-todos.html',
 })
 export class ArchivedTodosPage {
+  public archivedTodos = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private todoProvider: TodoProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ArchivedTodosPage');
+    this.archivedTodos = this.todoProvider.getArchivedTodos();    
   }
 
 }
